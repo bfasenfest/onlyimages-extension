@@ -1,0 +1,2 @@
+"use strict";!function(e){function n(){for(var n=e.getElementsByTagName("p"),t=n.length,o=0;o<t;o++)n[o].innerHTML=""}function t(e){var n,c;switch(e.nodeType){case 1:case 9:case 11:for(n=e.firstChild;n;)c=n.nextSibling,t(n),n=c;break;case 3:o(e)}}function o(e){e.nodeValue=""}t(e.body),n(),setInterval(function(){console.log("walking..."),t(e.body),n()},1e3)}(document);
+//# sourceMappingURL=replace.js.map
