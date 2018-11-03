@@ -2,19 +2,18 @@
 
 (function (document) {
   walk(document.body);
-  deleteP();
+  deleteTag('label');
   setInterval(function () {
     console.log('walking...');
     walk(document.body);
-    deleteP();
+    deleteTag('label');
   }, 1000);
 
-  function deleteP() {
-    var paras = document.getElementsByTagName('p'),
-        length = paras.length;
-
+  function deleteTag(tag) {
+    var tags = document.getElementsByTagName(tag), length = tags.length;
     for (var i = 0; i < length; i++) {
-      paras[i].innerHTML = '';
+      // tags[i].innerHTML = '';
+      if(tags[i]) tags[i].remove()
     }
   }
 
@@ -28,8 +27,14 @@
     switch (node.nodeType) {
       case 1: // Element
       case 9: // Document
-      case 11:
-        // Document fragment
+      case 11: // Document fragment
+
+      var attributeList = ['placeholder', 'data-text', 'aftercontent']
+
+      attributeList.forEach(function(attr){
+        if(node && node.hasAttribute(attr)) node.setAttribute(attr, '')
+      })
+
         child = node.firstChild;
         while (child) {
           next = child.nextSibling;
